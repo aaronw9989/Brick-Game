@@ -48,7 +48,7 @@ public class CannonView extends SurfaceView
     public static final double TARGET_LENGTH_PERCENT = 3.0 / 20;
     public static final double TARGET_FIRST_X_PERCENT = 3.0 / 5;
     public static final double TARGET_SPACING_PERCENT = 1.0 / 60;
-    public static final double TARGET_PIECES = 9;
+    public static final double TARGET_PIECES = 5;
     public static final double TARGET_MIN_SPEED_PERCENT = 3.0 / 4;
     public static final double TARGET_MAX_SPEED_PERCENT = 6.0 / 4;
 
@@ -69,6 +69,10 @@ public class CannonView extends SurfaceView
     private Cannon cannon;
     private Blocker blocker;
     private ArrayList<Target> targets;
+    private ArrayList<Target> targets2;
+    private ArrayList<Target> targets3;
+    private ArrayList<Target> targets4;
+    private ArrayList<Target> targets5;
 
     // dimension variables
     private int screenWidth;
@@ -162,13 +166,25 @@ public class CannonView extends SurfaceView
 
         Random random = new Random(); // for determining random velocities
         targets = new ArrayList<>(); // construct a new Target list
+        targets2 = new ArrayList<>();
+        targets3 = new ArrayList<>();
+        targets4 = new ArrayList<>();
+        targets5 = new ArrayList<>();
 
         // initialize targetX for the first Target from the left
         int targetX = (int) (TARGET_FIRST_X_PERCENT * screenWidth);
 
         // calculate Y coordinate of Targets
-        int targetY = (int) ((0.5 - TARGET_LENGTH_PERCENT / 2) *
+        int targetY = (int) ((0.9 - TARGET_LENGTH_PERCENT / 2) *
                 screenHeight);
+
+        int targetY2 = (int)((0.7 - TARGET_LENGTH_PERCENT / 2) * screenHeight);
+
+        int targetY3 = (int) ((0.5 - TARGET_LENGTH_PERCENT / 2) * screenHeight);
+
+        int targetY4 = (int) ((0.3 - TARGET_LENGTH_PERCENT / 2) * screenHeight);
+
+        int targetY5 = (int) ((0.1 - TARGET_LENGTH_PERCENT / 2) * screenHeight);
 
         // add TARGET_PIECES Targets to the Target list
         for (int n = 0; n < TARGET_PIECES; n++) {
@@ -200,13 +216,139 @@ public class CannonView extends SurfaceView
                     screenWidth;
         }
 
+
+         targetX = (int) (TARGET_FIRST_X_PERCENT * screenWidth);
+
+        for (int n = 0; n < TARGET_PIECES; n++) {
+
+            // determine a random velocity between min and max values
+            // for Target n
+            double velocity = screenHeight * (random.nextDouble() *
+                    (TARGET_MAX_SPEED_PERCENT - TARGET_MIN_SPEED_PERCENT) +
+                    TARGET_MIN_SPEED_PERCENT);
+
+            // alternate Target colors between dark and light
+            int color =  (n % 2 == 0) ?
+                    getResources().getColor(R.color.dark,
+                            getContext().getTheme()) :
+                    getResources().getColor(R.color.light,
+                            getContext().getTheme());
+
+            velocity *= -1; // reverse the initial velocity for next Target
+
+            // create and add a new Target to the Target list
+            targets2.add(new Target(this, color, HIT_REWARD, targetX, targetY2,
+                    (int) (TARGET_WIDTH_PERCENT * screenWidth),
+                    (int) (TARGET_LENGTH_PERCENT * screenHeight),
+                    (int) velocity));
+
+            // increase the x coordinate to position the next Target more
+            // to the right
+            targetX += (TARGET_WIDTH_PERCENT + TARGET_SPACING_PERCENT) *
+                    screenWidth;
+        }
+
+        targetX = (int) (TARGET_FIRST_X_PERCENT * screenWidth);
+
+        for (int n = 0; n < TARGET_PIECES; n++) {
+
+            // determine a random velocity between min and max values
+            // for Target n
+            double velocity = screenHeight * (random.nextDouble() *
+                    (TARGET_MAX_SPEED_PERCENT - TARGET_MIN_SPEED_PERCENT) +
+                    TARGET_MIN_SPEED_PERCENT);
+
+            // alternate Target colors between dark and light
+            int color =  (n % 2 == 0) ?
+                    getResources().getColor(R.color.dark,
+                            getContext().getTheme()) :
+                    getResources().getColor(R.color.light,
+                            getContext().getTheme());
+
+            velocity *= -1; // reverse the initial velocity for next Target
+
+            // create and add a new Target to the Target list
+            targets3.add(new Target(this, color, HIT_REWARD, targetX, targetY3,
+                    (int) (TARGET_WIDTH_PERCENT * screenWidth),
+                    (int) (TARGET_LENGTH_PERCENT * screenHeight),
+                    (int) velocity));
+
+            // increase the x coordinate to position the next Target more
+            // to the right
+            targetX += (TARGET_WIDTH_PERCENT + TARGET_SPACING_PERCENT) *
+                    screenWidth;
+        }
+
+        targetX = (int) (TARGET_FIRST_X_PERCENT * screenWidth);
+
+        for (int n = 0; n < TARGET_PIECES; n++) {
+
+            // determine a random velocity between min and max values
+            // for Target n
+            double velocity = screenHeight * (random.nextDouble() *
+                    (TARGET_MAX_SPEED_PERCENT - TARGET_MIN_SPEED_PERCENT) +
+                    TARGET_MIN_SPEED_PERCENT);
+
+            // alternate Target colors between dark and light
+            int color =  (n % 2 == 0) ?
+                    getResources().getColor(R.color.dark,
+                            getContext().getTheme()) :
+                    getResources().getColor(R.color.light,
+                            getContext().getTheme());
+
+            velocity *= -1; // reverse the initial velocity for next Target
+
+            // create and add a new Target to the Target list
+            targets4.add(new Target(this, color, HIT_REWARD, targetX, targetY4,
+                    (int) (TARGET_WIDTH_PERCENT * screenWidth),
+                    (int) (TARGET_LENGTH_PERCENT * screenHeight),
+                    (int) velocity));
+
+            // increase the x coordinate to position the next Target more
+            // to the right
+            targetX += (TARGET_WIDTH_PERCENT + TARGET_SPACING_PERCENT) *
+                    screenWidth;
+        }
+
+        targetX = (int) (TARGET_FIRST_X_PERCENT * screenWidth);
+
+        for (int n = 0; n < TARGET_PIECES; n++) {
+
+            // determine a random velocity between min and max values
+            // for Target n
+            double velocity = screenHeight * (random.nextDouble() *
+                    (TARGET_MAX_SPEED_PERCENT - TARGET_MIN_SPEED_PERCENT) +
+                    TARGET_MIN_SPEED_PERCENT);
+
+            // alternate Target colors between dark and light
+            int color =  (n % 2 == 0) ?
+                    getResources().getColor(R.color.dark,
+                            getContext().getTheme()) :
+                    getResources().getColor(R.color.light,
+                            getContext().getTheme());
+
+            velocity *= -1; // reverse the initial velocity for next Target
+
+            // create and add a new Target to the Target list
+            targets5.add(new Target(this, color, HIT_REWARD, targetX, targetY5,
+                    (int) (TARGET_WIDTH_PERCENT * screenWidth),
+                    (int) (TARGET_LENGTH_PERCENT * screenHeight),
+                    (int) velocity));
+
+            // increase the x coordinate to position the next Target more
+            // to the right
+            targetX += (TARGET_WIDTH_PERCENT + TARGET_SPACING_PERCENT) *
+                    screenWidth;
+        }
+
+
         // create a new Blocker
-        blocker = new Blocker(this, Color.BLACK, MISS_PENALTY,
-                (int) (BLOCKER_X_PERCENT * screenWidth),
-                (int) ((0.5 - BLOCKER_LENGTH_PERCENT / 2) * screenHeight),
-                (int) (BLOCKER_WIDTH_PERCENT * screenWidth),
-                (int) (BLOCKER_LENGTH_PERCENT * screenHeight),
-                (float) (BLOCKER_SPEED_PERCENT * screenHeight));
+       // blocker = new Blocker(this, Color.BLACK, MISS_PENALTY,
+                //(int) (BLOCKER_X_PERCENT * screenWidth),
+                //(int) ((0.5 - BLOCKER_LENGTH_PERCENT / 2) * screenHeight),
+                //(int) (BLOCKER_WIDTH_PERCENT * screenWidth),
+                //(int) (BLOCKER_LENGTH_PERCENT * screenHeight),
+               // (float) (BLOCKER_SPEED_PERCENT * screenHeight));
 
         timeLeft = 10; // start the countdown at 10 seconds
 
@@ -230,10 +372,10 @@ public class CannonView extends SurfaceView
         if (cannon.getCannonball() != null)
             cannon.getCannonball().update(interval);
 
-        blocker.update(interval); // update the blocker's position
+        //blocker.update(interval); // update the blocker's position
 
-        for (GameElement target : targets)
-            target.update(interval); // update the target's position
+       // for (GameElement target : targets)
+           // target.update(interval); // update the target's position
 
         timeLeft -= interval; // subtract from time left
 
@@ -342,10 +484,22 @@ public class CannonView extends SurfaceView
                 cannon.getCannonball().isOnScreen())
             cannon.getCannonball().draw(canvas);
 
-        blocker.draw(canvas); // draw the blocker
+       // blocker.draw(canvas); // draw the blocker
+
+        for (GameElement target : targets)
+                target.draw(canvas);
 
         // draw all of the Targets
-        for (GameElement target : targets)
+        for (GameElement target : targets2)
+            target.draw(canvas);
+
+        for (GameElement target : targets3)
+            target.draw(canvas);
+
+        for (GameElement target : targets4)
+            target.draw(canvas);
+
+        for (GameElement target : targets5)
             target.draw(canvas);
     }
 
@@ -358,7 +512,6 @@ public class CannonView extends SurfaceView
                 cannon.getCannonball().isOnScreen()) {
             for (int n = 0; n < targets.size(); n++) {
                 if (cannon.getCannonball().collidesWith(targets.get(n))) {
-                    targets.get(n).playSound(); // play Target hit sound
 
                     // add hit rewards time to remaining time
                     timeLeft += targets.get(n).getHitReward();
@@ -375,7 +528,7 @@ public class CannonView extends SurfaceView
         }
 
         // check if ball collides with blocker
-        if (cannon.getCannonball() != null &&
+        /*if (cannon.getCannonball() != null &&
                 cannon.getCannonball().collidesWith(blocker)) {
             blocker.playSound(); // play Blocker hit sound
 
@@ -383,8 +536,8 @@ public class CannonView extends SurfaceView
             cannon.getCannonball().reverseVelocityX();
 
             // deduct blocker's miss penalty from remaining time
-            timeLeft -= blocker.getMissPenalty();
-        }
+           timeLeft -= blocker.getMissPenalty();
+        }*/
     }
 
     // stops the game: called by CannonGameFragment's onPause method
